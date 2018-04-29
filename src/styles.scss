@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "material-theme.scss";
+
+$break-small: 640px;
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+@media screen and (max-width: $break-small) {
+  .app-firelist {
+    .mat-toolbar-row, 
+    .mat-toolbar-single-row {
+      font-size: 16px;
+      padding: 0 6px 0 12px;
+    }
+
+    .mat-icon-button {
+      line-height: 18px;
+
+      .mat-icon, i {
+        line-height: 18px;
+      }
+    }
+
+    .mat-icon {
+      height: 18px;
+      width: 18px;
+    }
+
+    .material-icons {
+      font-size: 18px;
+    }
+  }
+}
