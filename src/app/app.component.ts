@@ -22,7 +22,9 @@ export class AppComponent {
 
   constructor(db: AngularFireDatabase) {
     this.linksRef = db.list<Link>('links');
-    this.links$ = this.linksRef.valueChanges();
+    this.links$ = this.linksRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
   }
 
   async addLink(newName: string, url: string) {
@@ -36,5 +38,9 @@ export class AppComponent {
       linkNameInput.value = '';
       linkUrlInput.value = '';
     }
+  }
+
+  deleteLink(key: string) {
+    this.linksRef.remove(key);
   }
 }
