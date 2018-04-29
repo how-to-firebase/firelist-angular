@@ -20,6 +20,7 @@
       <li *ngFor="let link of links">
         <h2>
           <a target="_blank" [href]="link.url">{{link.name}}</a>
+          <button (click)="deleteLink(link.key)">×</button>
         </h2>
       </li>
     </ng-container>
