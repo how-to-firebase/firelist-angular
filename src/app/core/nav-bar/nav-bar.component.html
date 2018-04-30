@@ -1,9 +1,37 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Firelist ⚡️</span>
-    <span class="toolbar-spacer"></span>
-    <button mat-icon-button>
-      <mat-icon>assignment</mat-icon>
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div *ngIf="auth.user; then authenticated else guest"></div>
+
+<ng-template #authenticated>
+  <div *ngIf="auth.user as user">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button class="app-avatar-button" mat-icon-button>
+          <img [src]="user.photoURL" [alt]="user.displayName" width="32" class="app-avatar">
+        </button>
+        <span>Firelist ⚡️</span>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout($event)" aria-label="Logout">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</ng-template>
+
+<ng-template #guest>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Firelist ⚡️</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button>
+        <mat-icon>assignment</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</ng-template>
