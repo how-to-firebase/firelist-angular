@@ -8,8 +8,8 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-@media screen and (max-width: $break-small) {
-  .app-firelist {
+.app-firelist {
+  @media screen and (max-width: $break-small) {
     .mat-toolbar-row, 
     .mat-toolbar-single-row {
       font-size: 16px;
@@ -31,6 +31,106 @@ body {
 
     .material-icons {
       font-size: 18px;
+    }
+  }
+
+  .app-avatar {
+    border-radius: 50%;
+  
+    &.bordered {
+      box-shadow: 0 1px 1px 1px rgba(0,0,0,.2);
+      border: 1px solid #fff;
+    }
+  }
+
+  .mat-card {
+    max-width: 80%;
+    margin: 2em auto;
+    padding: 0 0 24px;
+
+    .mat-card-header {
+      background-color: rgba(0,0,0,.03);
+      padding: 24px 8px;
+      
+      .mat-card-title {
+        color: rgba(0,0,0,.54);
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0;
+
+        .btn-back {
+          position: absolute;
+          left: -34px;
+          top: 16px;
+        }
+      }
+    }
+
+    .mat-card-content {
+      padding: 16px 0;
+      margin-bottom: 0;
+
+      > p {
+        font-size: 16px;
+        margin: 0;
+        padding: 16px;
+
+        &.note-due-date {
+          padding: 16px 0 0;
+        }
+      }
+
+      .mat-list {
+        padding-top: 0;
+      }
+    }
+
+    .mat-card-actions {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    @media screen and (max-width: $break-small) {
+      box-shadow: none !important;
+      max-width: 100%;
+      margin: 0;
+
+      .mat-card-header {
+        padding: 12px 4px;
+
+        .mat-card-title {
+          font-size: 14px;
+        }
+      }
+
+      .mat-card-content {
+        padding: 0;
+
+        p {
+          font-size: 12px;
+          padding: 12px;
+        }
+      }
+
+      .mat-card-actions {
+        padding-left: 16px;
+        padding-right: 16px;
+  
+        .mat-button,
+        .mat-raised-button {
+          padding: 0 8px;
+          margin: 0 6px;
+          font-size: 12px;
+        }
+      }
+
+      .mat-list, 
+      .mat-nav-list, 
+      .mat-selection-list {
+        .mat-list-item {
+          font-size: 12px;
+        }
+      }
     }
   }
 }
