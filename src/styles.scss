@@ -1,7 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "material-theme.scss";
 
-$break-small: 640px;
+$break-small: 599px;
 
 body {
   margin: 0;
@@ -88,6 +88,15 @@ body {
     .mat-card-actions {
       padding-left: 24px;
       padding-right: 24px;
+
+      &.identity-providers {
+        .mat-button,
+        .mat-raised-button {
+          width: 100%;
+          margin: 0 0 10px;
+          padding: 0;
+        }
+      }
     }
 
     @media screen and (max-width: $break-small) {

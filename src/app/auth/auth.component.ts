@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styles: []
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
 
@@ -15,7 +15,26 @@ export class AuthComponent {
   ) { }
 
   async connectWithGoogle() {
-    await this.auth.googleLogin();
+    await this.auth.signInWithGoogle();
+    this.redirectAfterAuth();
+  }
+
+  async connectWithFacebook() {
+    await this.auth.signInWithFacebook();
+    this.redirectAfterAuth();
+  }
+
+  async connectWithTwitter() {
+    await this.auth.signInWithTwitter();
+    this.redirectAfterAuth();
+  }
+
+  async connectWithGithub() {
+    await this.auth.signInWithGithub();
+    this.redirectAfterAuth();
+  }
+
+  private redirectAfterAuth(): void {
     this.router.navigate(['/']);
   }
 }
