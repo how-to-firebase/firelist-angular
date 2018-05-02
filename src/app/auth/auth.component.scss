@@ -1,0 +1,27 @@
+.identity-providers {
+  button {
+    color: #FFF;
+
+    &.auth-google {
+      background-color: #FFF;
+      color: #727272;
+    }
+
+    &.auth-facebook {
+      background-color: #3b5998;
+    }
+
+    &.auth-twitter {
+      background-color: #55acee;
+    }
+
+    &.auth-github {
+      background-color: #333;
+    }
+
+    .mat-icon {
+      height: 24px;
+      margin-right: 4px;
+    }
+  }
+}

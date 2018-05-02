@@ -15,9 +15,18 @@
     </mat-list>
   </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-raised-button (click)="connectWithGoogle()" color="accent">
-      <mat-icon>lock_outline</mat-icon> Connect with Google
+  <mat-card-actions class="identity-providers">
+    <button mat-raised-button (click)="connectWithGoogle()" class="auth-google">
+      <mat-icon svgIcon="google"></mat-icon>Connect with Google
+    </button>
+    <button mat-raised-button (click)="connectWithFacebook()" class="auth-facebook">
+      <mat-icon svgIcon="facebook"></mat-icon>Connect with Facebook
+    </button>
+    <button mat-raised-button (click)="connectWithTwitter()" class="auth-twitter">
+      <mat-icon svgIcon="twitter"></mat-icon>Connect with Twitter
+    </button>
+    <button mat-raised-button (click)="connectWithGithub()" class="auth-github">
+      <mat-icon svgIcon="github"></mat-icon>Connect with Github
     </button>
   </mat-card-actions>
 </mat-card>
