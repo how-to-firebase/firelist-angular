@@ -8,6 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
+import { NotesModule } from './notes/notes.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AuthComponent } from './auth/auth.component';
     AppRoutingModule,
     BrowserModule,
     CoreModule,
+    NotesModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

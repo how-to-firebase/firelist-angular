@@ -39,6 +39,12 @@ body {
         background-color: transparent;
       }
     }
+
+    app-notes-list {
+      .app-empty-state {
+        margin: 16px;
+      } 
+    }
   }
 
   .app-avatar {
@@ -47,6 +53,16 @@ body {
     &.bordered {
       box-shadow: 0 1px 1px 1px rgba(0,0,0,.2);
       border: 1px solid #fff;
+    }
+  }
+
+  app-notes-list {
+    .app-empty-state {
+      background-color: #6382ff;
+
+      blockquote, p {
+        color: #FFF;
+      }
     }
   }
 
