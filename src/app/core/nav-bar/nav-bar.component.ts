@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styles: ['.toolbar-spacer { flex: 1 1 auto; }']
+  styles: ['.toolbar-spacer { flex: 1 1 auto; } .emoji { height: 20px; position: relative; top: 2px; }']
 })
 export class NavBarComponent {
 

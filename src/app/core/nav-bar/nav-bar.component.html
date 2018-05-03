@@ -2,12 +2,12 @@
 
 <ng-template #authenticated>
   <div *ngIf="auth.user as user">
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <mat-toolbar-row>
         <button class="app-avatar-button" mat-icon-button>
           <img [src]="user.photoURL" [alt]="user.displayName" width="32" class="app-avatar">
         </button>
-        <span>Firelist ⚡️</span>
+        <span>Firelist <img src="assets/icons/emojione_fire.png" class="emoji"></span>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button [mat-menu-trigger-for]="menu">
           <mat-icon>more_vert</mat-icon>
@@ -25,9 +25,9 @@
 </ng-template>
 
 <ng-template #guest>
-  <mat-toolbar color="primary">
+  <mat-toolbar>
     <mat-toolbar-row>
-      <span>Firelist ⚡️</span>
+      <span>Firelist <img src="assets/icons/emojione_fire.png" class="emoji"></span>
       <span class="toolbar-spacer"></span>
       <button mat-icon-button>
         <mat-icon>assignment</mat-icon>
