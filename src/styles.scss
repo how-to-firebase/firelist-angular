@@ -39,11 +39,13 @@ body {
         background-color: transparent;
       }
     }
-
-    app-notes-list {
-      .app-empty-state {
-        margin: 16px;
-      } 
+  }
+  
+  .mat-progress-bar {
+    &.app-loading-state {
+      height: 2px;
+      position: absolute;
+      top: 0;
     }
   }
 
@@ -62,6 +64,14 @@ body {
 
       blockquote, p {
         color: #FFF;
+      }
+    }
+  }
+
+  form {
+    .mat-card {
+      .mat-card-content {
+        border-bottom: 1px solid rgba(0,0,0,.03);
       }
     }
   }
@@ -146,9 +156,8 @@ body {
     }
 
     @media screen and (max-width: $break-small) {
-      box-shadow: none !important;
       max-width: 100%;
-      margin: 0;
+      margin: 16px;
 
       &.app-empty-state {
         .mat-card-content {
@@ -167,6 +176,11 @@ body {
 
         .mat-card-title {
           font-size: 14px;
+
+          .btn-back {
+            left: -28px;
+            top: -1px;
+          }
         }
       }
 
@@ -193,6 +207,47 @@ body {
       .mat-selection-list {
         .mat-list-item {
           font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .mat-list {
+    @media screen and (max-width: $break-small) {
+      .mat-list-item {
+        .mat-list-icon {
+          font-size: 18px;
+          height: 18px;
+          width: 18px;
+        }
+      }
+    }
+
+    .note-item-description {
+      height: 80px;
+
+      .mat-list-icon {
+        align-self: flex-start;
+        margin-top: 15px;
+      }
+    }
+
+    .mat-list-item:not(.form-field-item) {
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+  
+    .mat-list-item-content {
+      .mat-form-field {
+        width: 100%;
+        
+        .mat-form-field-infix {
+          top: 4px;
+        }
+  
+        .mat-form-field-underline {
+          background-color: transparent;
         }
       }
     }
