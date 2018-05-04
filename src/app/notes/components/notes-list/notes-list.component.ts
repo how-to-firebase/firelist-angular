@@ -19,8 +19,7 @@ export class NotesListComponent implements OnInit {
   ngOnInit() {
     this.notesCollection = this.afs.collection<Note>('notes');
     this.notes$ = this.notesCollection.snapshotChanges().map(actions => {
-      return actions.filter(item => !item.payload.doc.data().archived)
-                    .map(a => {
+      return actions.map(a => {
                       const data = a.payload.doc.data() as Note;
                       const id = a.payload.doc.id;
                       return { id, ...data };
