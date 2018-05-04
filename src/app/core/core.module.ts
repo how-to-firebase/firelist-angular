@@ -17,7 +17,7 @@ import { AuthService } from './auth.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,
     CommonModule,
     MaterialModule

@@ -37,11 +37,11 @@ export class NoteAddComponent implements OnInit {
     this.notesCollection = this.afs.collection<Note>(`notes`);
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.noteForm.valid) {
       this.isLoading = true;
       this.note = this.prepareToSaveNote();
-      await this.notesCollection.add(this.note);
+      this.notesCollection.add(this.note);
 
       this.router.navigate(['/notes']);
     }
