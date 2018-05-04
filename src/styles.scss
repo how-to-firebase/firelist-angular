@@ -37,6 +37,7 @@ body {
     app-auth {
       .app-empty-state {
         background-color: transparent;
+        box-shadow: none;
       }
     }
   }
@@ -47,6 +48,12 @@ body {
       position: absolute;
       top: 0;
     }
+  }
+
+  .mat-fab.fab-bottom-right {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
   }
 
   .app-avatar {
@@ -108,6 +115,11 @@ body {
       background-color: rgba(0,0,0,.03);
       padding: 24px 8px;
       
+      .mat-card-header-text {
+        align-items: center;
+        display: flex;
+      }
+      
       .mat-card-title {
         color: rgba(0,0,0,.54);
         font-size: 20px;
@@ -130,14 +142,29 @@ body {
         font-size: 16px;
         margin: 0;
         padding: 16px;
-
-        &.note-due-date {
-          padding: 16px 0 0;
-        }
       }
 
       .mat-list {
         padding-top: 0;
+      }
+
+      .note-metadata {
+        display: inline-flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 8px 12px 6px 10px;
+        font-size: 12px;
+        color: #888;
+        font-weight: lighter;
+
+        &.clean {
+          background-color: transparent;
+          padding-left: 4px;
+        }
+
+        .mat-icon {
+          margin-right: 2px;
+        }
       }
     }
 
@@ -172,7 +199,7 @@ body {
       }
 
       .mat-card-header {
-        padding: 12px 4px;
+        padding: 12px;
 
         .mat-card-title {
           font-size: 14px;

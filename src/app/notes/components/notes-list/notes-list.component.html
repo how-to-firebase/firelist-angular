@@ -1,8 +1,47 @@
-<mat-card class="app-empty-state">
-  <mat-card-content>
-    <img src="assets/notes.png" width="125">
-    <blockquote><span class="quotes">“</span>If you spend too much time thinking about a thing, you’ll never get it done.<span class="quotes">”</span> – <cite>Bruce Lee</cite></blockquote>
-    <p>You haven't created any note yet</p>
-    <button mat-raised-button type="button" routerLink="/notes/add">Start Now</button>
-  </mat-card-content>
-</mat-card>
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate" color="accent" class="app-loading-state"></mat-progress-bar>
+
+  <mat-card class="app-empty-state">
+    <mat-card-content>
+      <img src="assets/notes.png" width="125">
+      <blockquote><span class="quotes">“</span>If you spend too much time thinking about a thing, you’ll never get it done.<span class="quotes">”</span> – <cite>Bruce Lee</cite></blockquote>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<ng-container *ngIf="notes$ | async; let notes; else loading">
+
+  <div *ngIf="notes.length > 0">
+    <mat-card *ngFor="let note of notes">
+      <mat-card-header>
+        <img mat-card-avatar [src]="note.owner.photoURL">
+        <mat-card-title>{{note.title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p *ngIf="note.description">
+          <span>{{note.description}}</span>
+        </p>
+        <span *ngIf="note.dueDate" class="note-metadata">
+          <mat-icon>today</mat-icon> {{note.dueDate | date}}
+        </span>
+
+        <span *ngIf="note.location" class="note-metadata clean">
+          <mat-icon>place</mat-icon> {{note.location}}
+        </span>
+      </mat-card-content>
+    </mat-card>
+
+    <button mat-fab class="fab-bottom-right" type="button" routerLink="/notes/add">
+      <mat-icon aria-label="icon-button with a plus icon">library_add</mat-icon>
+    </button>
+  </div>
+
+  <mat-card class="app-empty-state" *ngIf="notes.length === 0">
+    <mat-card-content>
+      <img src="assets/notes.png" width="125">
+      <blockquote><span class="quotes">“</span>If you spend too much time thinking about a thing, you’ll never get it done.<span class="quotes">”</span> – <cite>Bruce Lee</cite></blockquote>
+      <p>You haven't created any note yet</p>
+      <button mat-raised-button type="button" routerLink="/notes/add">Start Now</button>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
