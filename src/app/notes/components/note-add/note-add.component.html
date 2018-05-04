@@ -1,0 +1,86 @@
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading" class="app-loading-state"></mat-progress-bar>
+
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" class="note-form-add">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <button mat-icon-button type="button" routerLink="/notes" class="btn-back">
+          <mat-icon aria-label="An icon-button with a arrow icon">keyboard_arrow_left</mat-icon>
+        </button>
+        New note
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item class="form-field-item">
+          <mat-icon mat-list-icon>edit</mat-icon>
+          <div mat-line>
+            <mat-form-field floatLabel="never" color="accent">
+              <input 
+                matInput 
+                autocomplete="off" 
+                autofocus="true"
+                placeholder="Title"
+                formControlName="title"
+                required>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="note-item-description form-field-item">
+          <mat-icon mat-list-icon>subject</mat-icon>
+          <div mat-line>
+            <mat-form-field floatLabel="never" color="accent">
+              <textarea 
+                matInput 
+                placeholder="Note..."
+                formControlName="description"
+                matTextareaAutosize 
+                matAutosizeMinRows="3"
+                matAutosizeMaxRows="3"
+                ></textarea>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="form-field-item">
+          <mat-icon mat-list-icon>place</mat-icon>
+          <div mat-line>
+            <mat-form-field floatLabel="never" color="accent">
+              <input 
+                autocomplete="off"
+                matInput 
+                placeholder="Add Location" 
+                formControlName="location"
+                >
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+        <mat-list-item class="form-field-item">
+          <mat-icon mat-list-icon (click)="dueDatePicker.open()" class="cursor-pointer">today</mat-icon>
+          <div mat-line>
+            <input 
+              matInput 
+              [min]="today"
+              [matDatepicker]="dueDatePicker" 
+              (click)="dueDatePicker.open()"
+              placeholder="Choose clicking on the calendar icon" 
+              formControlName="dueDate">
+            <mat-datepicker touchUi="true" #dueDatePicker disabled="false"></mat-datepicker>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions class="app-actions">
+      <button 
+        mat-button 
+        color="warn" 
+        type="button" 
+        [disabled]="isLoading"
+        routerLink="/notes">Cancel</button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        [disabled]="!noteForm.valid || isLoading"
+        type="submit">{{ (isLoading) ? 'Creating...' : 'Create now'}}</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
