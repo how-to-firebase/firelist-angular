@@ -26,8 +26,6 @@ export class AuthService {
 
     this.authState$.subscribe((user: firebase.User) => {
       this.user = user;
-
-      console.log('authState$ changed', this.user);
     });
   }
 
