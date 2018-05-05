@@ -2,7 +2,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     match /notes/{noteId} {
-    	allow read: if isAuthenticated()
+    	allow read: if isAuthenticated() && isNoteOwner()
     	allow create: if isAuthenticated() && isNoteValid()
     }
     
@@ -19,6 +19,10 @@ service cloud.firestore {
 
     function incomingRequestData() {
       return request.resource.data
+    }
+
+    function isNoteOwner() {
+    	return resource.data.owner.id == request.auth.uid
     }
   }
 }
