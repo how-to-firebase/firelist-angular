@@ -11,6 +11,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { MaterialModule } from '../material.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   imports: [
@@ -27,6 +28,6 @@ import { AuthService } from './auth.service';
     MaterialModule,
     NavBarComponent
   ],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuard]
 })
 export class CoreModule { }

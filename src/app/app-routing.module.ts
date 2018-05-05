@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/notes',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'auth',
