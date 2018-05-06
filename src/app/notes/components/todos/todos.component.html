@@ -8,7 +8,7 @@
 
   <mat-list class="note-todos"  *ngIf="todosList && todosList.length > 0; else emptyTodosList">
     <mat-list-item *ngFor="let todo of todosList" [ngClass]="{'todo-completed' : todo.completed}">
-      <mat-checkbox [checked]="todo.completed"></mat-checkbox>
+      <mat-checkbox [checked]="todo.completed" (change)="onTodoToggle($event, todo)"></mat-checkbox>
       <div mat-line>
         {{todo.title}}
       </div>

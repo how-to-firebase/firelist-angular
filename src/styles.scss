@@ -178,6 +178,15 @@ body {
           }
         }
 
+        &.todo-completed {
+          opacity: .9;
+
+          .mat-list-text {
+            color: rgba(0, 0, 0, 0.4);
+            text-decoration: line-through;
+          }
+        }
+
         .mat-list-item-content {
           flex-direction: row-reverse;
 
