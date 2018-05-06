@@ -37,4 +37,17 @@ export class TodosComponent implements OnInit {
     });
   }
 
+  addTodo() {
+    if (this.newTodoText.trim().length) {
+      const newTodo: Todo = {
+        completed: false,
+        title: this.newTodoText,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      this.todosCollection.add(newTodo);
+      this.newTodoText = '';
+    }
+  }
+
 }
