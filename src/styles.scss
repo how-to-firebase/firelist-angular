@@ -160,6 +160,21 @@ body {
       }
     }
 
+    .todos-progress {
+      padding: 26px 15px 0 50px;
+      position: relative;
+    
+      .todos-percentage-value {
+        color: rgba(0,0,0,.5);
+        display: inline-block;
+        position: absolute;
+        left: 12px;
+        text-align: center;
+        top: 22px;
+        width: 35px;
+      }
+    }
+
     .mat-list.note-todos {
       .mat-list-item {
         &:first-child {
@@ -199,7 +214,7 @@ body {
           }
 
           .mat-checkbox {
-            margin-right: 8px;
+            margin-right: 12px;
           }
 
           .action-todo-delete {
@@ -216,10 +231,10 @@ body {
       background: rgba(0,0,0,.04);
   
       .mat-list-item-content {
-        padding: 0 12px 0 10px;
+        padding: 0 12px 0 11px;
   
         .mat-list-text {
-          padding-left: 2px !important;
+          padding-left: 6px !important;
         }
       }
     }
@@ -240,6 +255,16 @@ body {
               width: 34px;
             }
           }
+        }
+      }
+
+      .todos-progress {
+        padding: 16px 10px 0 44px;  
+      
+        .todos-percentage-value {
+          font-size: 12px;
+          left: 10px;
+          top: 12px;
         }
       }
     }

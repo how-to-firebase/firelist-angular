@@ -16,6 +16,7 @@ export class TodosComponent implements OnInit {
   private todosCollection: AngularFirestoreCollection<any>;
   todos$: Observable<Todo[]>;
   todosList: Todo[];
+  todosPercentage: number;
   newTodoText = '';
 
   constructor(
@@ -34,6 +35,7 @@ export class TodosComponent implements OnInit {
 
     this.todos$.subscribe(items => {
       this.todosList = [...items];
+      this.calculateCompletedTodosPercentage();
     });
   }
 
@@ -72,4 +74,8 @@ export class TodosComponent implements OnInit {
     }, { merge: true });
   }
 
+  calculateCompletedTodosPercentage(): void {
+    const completedTodos: number = this.todosList.filter(todoItem => todoItem.completed === true).length || 0;
+    this.todosPercentage = Math.round((completedTodos / this.todosList.length) * 100);
+  }
 }
