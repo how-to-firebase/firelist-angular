@@ -41,6 +41,38 @@ body {
       }
     }
   }
+
+  .app-empty-state {
+    text-align: center;
+
+    img {
+      margin: 30px 0 40px;
+    }
+
+    blockquote {
+      font-size: 1.25rem;
+      font-style: italic;
+      margin: 0 0 20px;
+      padding: 0 10px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      padding: 12px;
+    }
+
+    @media screen and (max-width: $break-small) {
+      blockquote {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+  }
   
   .mat-progress-bar {
     &.app-loading-state {
@@ -110,6 +142,37 @@ body {
     }
   }
 
+  .app-note-todos-list {
+    background: rgba(0, 0, 0, 0.01);
+    margin: 20px;
+    border: 1px solid #ECEFF1;
+  
+    .app-empty-state {
+      img {
+        margin: 20px 0 12px;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        border-radius: 50%;
+      }
+  
+      blockquote {
+        font-size: .865rem;
+      }
+    }
+  
+    .note-todos-add {
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(0,0,0,.04);
+  
+      .mat-list-item-content {
+        padding: 0 12px 0 4px;
+  
+        .mat-list-text {
+          padding-left: 2px !important;
+        }
+      }
+    }
+  }
+
   .note-field {
     .mat-form-field {
       display: block;
@@ -157,29 +220,6 @@ body {
       .mat-card-actions {
         button:last-child {
           float: right;
-        }
-      }
-    }
-
-    &.app-empty-state {
-      text-align: center;
-
-      .mat-card-content {
-        img {
-          margin: 30px 0 40px;
-        }
-  
-        blockquote {
-          font-size: 1.25rem;
-          font-style: italic;
-          margin: 0 0 20px;
-          padding: 0 10px;
-        }
-
-        > p {
-          font-size: 14px;
-          margin-bottom: 20px;
-          padding: 12px;
         }
       }
     }
@@ -269,18 +309,6 @@ body {
     @media screen and (max-width: $break-small) {
       max-width: 100%;
       margin: 16px;
-
-      &.app-empty-state {
-        .mat-card-content {
-          blockquote {
-            font-size: 1rem;
-          }
-
-          > p {
-            font-size: 12px;
-          }
-        }
-      }
 
       .mat-card-header {
         padding: 12px;

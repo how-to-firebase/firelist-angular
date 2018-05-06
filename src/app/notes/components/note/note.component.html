@@ -48,6 +48,8 @@
         <mat-icon>place</mat-icon> {{note.location}}
       </span>
 
+      <app-todos [noteId]="noteId"></app-todos>
+
       <p class="note-archived" *ngIf="note.archived">Note has been archived</p>
     </mat-card-content>
 
