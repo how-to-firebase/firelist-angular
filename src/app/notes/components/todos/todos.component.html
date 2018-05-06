@@ -1,0 +1,30 @@
+<section class="app-note-todos-list">
+  <ng-template #emptyTodosList>
+    <div class="app-empty-state">
+      <img src="assets/empty-todos.png" width="125">
+      <blockquote><span class="quotes">“</span>If you spend too much time thinking about a thing, you’ll never get it done.<span class="quotes">”</span> – <cite>Bruce Lee</cite></blockquote>
+    </div>
+  </ng-template>
+
+  <mat-list class="note-todos"  *ngIf="todosList; else emptyTodosList">
+    <mat-list-item *ngFor="let todo of todosList" [ngClass]="{'todo-completed' : todo.completed}">
+      <mat-checkbox [checked]="todo.completed"></mat-checkbox>
+      <div mat-line>
+        {{todo.title}}
+      </div>
+      <button mat-icon-button (click)="deleteTodo($event, todo)" class="action-todo-delete action-delete" color="warn">
+        <mat-icon aria-label="An icon-button with a delete icon">cancel</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+  <mat-list class="note-todos-add">
+    <mat-list-item>
+      <mat-icon mat-list-icon>add_box</mat-icon>
+      <div mat-line>
+        <mat-form-field floatLabel="never" color="accent">
+          <input matInput autocomplete="off" placeholder="Add a task..." (keyup.enter)="addTodo()" [(ngModel)]="newTodoText" name="newTodo">
+        </mat-form-field>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</section>

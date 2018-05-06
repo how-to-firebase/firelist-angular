@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NoteAddComponent } from './components/note-add/note-add.component';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { NoteComponent } from './components/note/note.component';
+import { TodosComponent } from './components/todos/todos.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { NoteComponent } from './components/note/note.component';
     NotesRoutingModule,
     SharedModule
   ],
-  declarations: [NotesListComponent, NoteAddComponent, NoteComponent]
+  declarations: [NotesListComponent, NoteAddComponent, NoteComponent, TodosComponent]
 })
 export class NotesModule { }
