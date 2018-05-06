@@ -41,9 +41,9 @@ export class NoteAddComponent implements OnInit {
     if (this.noteForm.valid) {
       this.isLoading = true;
       this.note = this.prepareToSaveNote();
-      this.notesCollection.add(this.note);
-
-      this.router.navigate(['/notes']);
+      this.notesCollection.add(this.note).then(doc => {
+        this.router.navigate([`/note/${doc.id}`]);
+      });
     }
   }
 

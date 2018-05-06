@@ -1,7 +1,7 @@
 <mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading" class="app-loading-state"></mat-progress-bar>
 
 <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" class="note-form-add">
-  <mat-card>
+  <mat-card class="has-card-actions">
     <mat-card-header>
       <mat-card-title>
         <button mat-icon-button type="button" routerLink="/notes" class="btn-back">
