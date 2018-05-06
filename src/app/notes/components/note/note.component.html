@@ -8,15 +8,34 @@
       <mat-card-title>
         <button mat-icon-button type="button" (click)="navigateToPreviousPage() " class="btn-back">
           <mat-icon aria-label="An icon-button with a arrow icon">keyboard_arrow_left</mat-icon>
-        </button> 
-        {{note.title}}
+        </button>
+
+        <textarea 
+          matInput 
+          [value]="note.title"
+          matTextareaAutosize 
+          matAutosizeMinRows="1"
+          matAutosizeMaxRows="2"
+          placeholder="Title"
+          (blur)="updateNoteTitle($event)"></textarea>
       </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-      <p *ngIf="note.description">
-        <span>{{note.description}}</span>
-      </p>
+      <div class="note-field">
+        <mat-form-field
+          floatLabel="never"
+          color="accent">
+          <textarea matInput 
+                    placeholder="Add note..." 
+                    matTextareaAutosize 
+                    matAutosizeMinRows="2"
+                    matAutosizeMaxRows="5"
+                    [value]="note.description || null"
+                    (blur)="updateNoteDescription($event)"></textarea>
+        </mat-form-field>
+      </div>
+
       <span *ngIf="note.dueDate" class="note-metadata note-duedate">
         <mat-icon>flag</mat-icon> {{note.dueDate | date}}
 

@@ -65,4 +65,20 @@ export class NoteComponent implements OnInit {
       dueDate: event.value
     });
   }
+
+  updateNoteDescription(e) {
+    if (e.target.value.trim().length) {
+      this.noteDoc.update({
+        description: e.target.value
+      });
+    }
+  }
+
+  updateNoteTitle(e) {
+    if (e.target.value.trim().length) {
+      this.noteDoc.update({
+        title: e.target.value
+      });
+    }
+  }
 }
