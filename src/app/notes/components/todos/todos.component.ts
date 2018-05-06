@@ -56,4 +56,14 @@ export class TodosComponent implements OnInit {
     this.afs.doc<Todo>(`notes/${this.noteId}/todos/${todo.id}`).delete();
   }
 
+  onTodoToggle(e, todo): void {
+    const todoRef = this.todosCollection.doc(todo.id);
+    const completedAt = (e.checked) && firebase.firestore.FieldValue.serverTimestamp();
+
+    todoRef.set({
+      completed: e.checked,
+      completedAt
+    }, { merge: true });
+  }
+
 }
