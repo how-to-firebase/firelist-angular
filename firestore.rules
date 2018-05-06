@@ -4,6 +4,10 @@ service cloud.firestore {
     match /notes/{noteId} {
     	allow read: if isAuthenticated() && isNoteOwner()
     	allow create: if isAuthenticated() && isNoteValid()
+
+      match /todos/{todoId} {
+        allow read, write: if isAuthenticated()
+      }
     }
     
     // Functions
