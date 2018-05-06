@@ -181,7 +181,7 @@ body {
         &.todo-completed {
           opacity: .9;
 
-          .mat-list-text {
+          .mat-input-element {
             color: rgba(0, 0, 0, 0.4);
             text-decoration: line-through;
           }
@@ -192,6 +192,10 @@ body {
 
           .mat-list-text {
             padding-top: 1px;
+
+            .mat-input-element {
+              caret-color: #e91e63;
+            }
           }
 
           .mat-checkbox {
