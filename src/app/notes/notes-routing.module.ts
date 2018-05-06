@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from '../core/auth.guard';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { NoteAddComponent } from './components/note-add/note-add.component';
-import { AuthGuard } from '../core/auth.guard';
+import { NoteComponent } from './components/note/note.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     component: NoteAddComponent,
     canActivate: [ AuthGuard ]
   },
+  {
+    path: 'note/:id',
+    component: NoteComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

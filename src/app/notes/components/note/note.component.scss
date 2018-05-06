@@ -1,0 +1,12 @@
+.date-picker-calendar-only {
+  width: 1px;
+  position: absolute;
+  left: 10px;
+  height: 1px;
+  z-index: -999;
+}
+
+.note-archived {
+  color: rgba(0,0,0,.3);
+  font-style: italic;
+}

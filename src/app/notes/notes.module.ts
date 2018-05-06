@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { NoteAddComponent } from './components/note-add/note-add.component';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
+import { NoteComponent } from './components/note/note.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
     NotesRoutingModule,
     SharedModule
   ],
-  declarations: [NotesListComponent, NoteAddComponent]
+  declarations: [NotesListComponent, NoteAddComponent, NoteComponent]
 })
 export class NotesModule { }
