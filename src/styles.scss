@@ -169,6 +169,15 @@ body {
         &:last-child {
           margin-bottom: 8px;
         }
+
+        &:hover {
+          .mat-list-item-content {
+            .action-todo-delete {
+              visibility: visible;
+            }
+          }
+        }
+
         .mat-list-item-content {
           flex-direction: row-reverse;
 
@@ -183,7 +192,6 @@ body {
           .action-todo-delete {
             position: absolute;
             right: 0;
-            top: 4px;
             visibility: hidden;
           }
         }
@@ -212,6 +220,11 @@ body {
                 height: 15px;
                 width: 15px;
               }
+            }
+
+            .action-todo-delete {
+              height: 34px;
+              width: 34px;
             }
           }
         }

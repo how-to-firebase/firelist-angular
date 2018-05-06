@@ -50,4 +50,10 @@ export class TodosComponent implements OnInit {
     }
   }
 
+  deleteTodo(e, todo): void {
+    e.stopPropagation();
+
+    this.afs.doc<Todo>(`notes/${this.noteId}/todos/${todo.id}`).delete();
+  }
+
 }
