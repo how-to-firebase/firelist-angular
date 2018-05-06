@@ -66,4 +66,10 @@ export class TodosComponent implements OnInit {
     }, { merge: true });
   }
 
+  updateTodoItem(e, todo): void {
+    this.todosCollection.doc(todo.id).set({
+      title: e.target.value
+    }, { merge: true });
+  }
+
 }

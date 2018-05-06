@@ -10,7 +10,7 @@
     <mat-list-item *ngFor="let todo of todosList" [ngClass]="{'todo-completed' : todo.completed}">
       <mat-checkbox [checked]="todo.completed" (change)="onTodoToggle($event, todo)"></mat-checkbox>
       <div mat-line>
-        {{todo.title}}
+        <input matInput autocomplete="off" [value]="todo.title" (blur)="updateTodoItem($event, todo)">
       </div>
       <button mat-icon-button (click)="deleteTodo($event, todo)" class="action-todo-delete action-delete" color="warn">
         <mat-icon aria-label="An icon-button with a delete icon">cancel</mat-icon>
