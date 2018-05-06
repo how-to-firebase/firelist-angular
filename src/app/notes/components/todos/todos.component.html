@@ -6,7 +6,7 @@
     </div>
   </ng-template>
 
-  <mat-list class="note-todos"  *ngIf="todosList; else emptyTodosList">
+  <mat-list class="note-todos"  *ngIf="todosList && todosList.length > 0; else emptyTodosList">
     <mat-list-item *ngFor="let todo of todosList" [ngClass]="{'todo-completed' : todo.completed}">
       <mat-checkbox [checked]="todo.completed"></mat-checkbox>
       <div mat-line>
@@ -19,7 +19,7 @@
   </mat-list>
   <mat-list class="note-todos-add">
     <mat-list-item>
-      <mat-icon mat-list-icon>add_box</mat-icon>
+      <mat-icon mat-list-icon>add</mat-icon>
       <div mat-line>
         <mat-form-field floatLabel="never" color="accent">
           <input matInput autocomplete="off" placeholder="Add a task..." (keyup.enter)="addTodo()" [(ngModel)]="newTodoText" name="newTodo">

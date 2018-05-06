@@ -142,9 +142,10 @@ body {
     }
   }
 
+  // Todos
   .app-note-todos-list {
     background: rgba(0, 0, 0, 0.01);
-    margin: 20px;
+    margin: 20px 10px;
     border: 1px solid #ECEFF1;
   
     .app-empty-state {
@@ -158,16 +159,61 @@ body {
         font-size: .865rem;
       }
     }
-  
+
+    .mat-list.note-todos {
+      .mat-list-item {
+        &:first-child {
+          margin-top: 8px;
+        }
+
+        &:last-child {
+          margin-bottom: 8px;
+        }
+        .mat-list-item-content {
+          flex-direction: row-reverse;
+
+          .mat-list-text {
+            padding-top: 1px;
+          }
+
+          .mat-checkbox {
+            margin-right: 8px;
+          }
+
+          .action-todo-delete {
+            position: absolute;
+            right: 0;
+            top: 4px;
+            visibility: hidden;
+          }
+        }
+      }
+    }
+
     .note-todos-add {
       border-top: 1px solid rgba(0, 0, 0, 0.04);
       background: rgba(0,0,0,.04);
   
       .mat-list-item-content {
-        padding: 0 12px 0 4px;
+        padding: 0 12px 0 10px;
   
         .mat-list-text {
           padding-left: 2px !important;
+        }
+      }
+    }
+
+    @media screen and (max-width: $break-small) {
+      .mat-list.note-todos {
+        .mat-list-item {
+          .mat-list-item-content {
+            .mat-checkbox {
+              .mat-checkbox-inner-container {
+                height: 15px;
+                width: 15px;
+              }
+            }
+          }
         }
       }
     }
@@ -349,6 +395,7 @@ body {
       .mat-selection-list {
         .mat-list-item {
           font-size: 12px;
+          height: 34px;
         }
       }
     }
