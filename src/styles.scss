@@ -73,6 +73,20 @@ body {
         color: #FFF;
       }
     }
+
+    .mat-card {
+      .mat-card-header-text {
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    @media screen and (max-width: $break-small) {
+      .mat-card-avatar {
+        height: 30px;
+        width: 30px;
+      }
+    }
   }
 
   app-note {
@@ -91,6 +105,36 @@ body {
         .mat-input-element {
           // accent color
           caret-color: #e91e63;
+        }
+      }
+    }
+  }
+
+  .note-field {
+    .mat-form-field {
+      display: block;
+      font-size: 16px;
+  
+      .mat-form-field-wrapper {
+        padding: 16px;
+  
+        .mat-form-field-infix {
+          border: 0 none;
+          margin: 0;
+          padding: 0;
+        }
+      }
+  
+      .mat-form-field-underline {
+        display: none;
+      }
+
+      @media screen and (max-width: $break-small) {
+        font-size: 12px;
+
+        .mat-form-field-wrapper {
+          padding-left: 12px;
+          padding-right: 12px;
         }
       }
     }
@@ -143,11 +187,6 @@ body {
     .mat-card-header {
       background-color: rgba(0,0,0,.03);
       padding: 24px 8px;
-      
-      .mat-card-header-text {
-        align-items: center;
-        display: flex;
-      }
       
       .mat-card-title {
         color: rgba(0,0,0,.54);
