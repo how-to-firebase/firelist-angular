@@ -50,6 +50,11 @@
 
       <app-todos [noteId]="noteId"></app-todos>
 
+      <app-note-shared-with 
+        [noteId]="noteId" 
+        [collaborators]="note.sharedWith" 
+        *ngIf="note.sharedWith"></app-note-shared-with>
+
       <p class="note-archived" *ngIf="note.archived">Note has been archived</p>
     </mat-card-content>
 

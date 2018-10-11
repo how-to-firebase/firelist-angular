@@ -97,7 +97,45 @@ body {
     }
   }
 
-  app-notes-list {
+  .note-shared-with {
+    padding: 0 10px 10px;
+    position: relative;
+  
+    ul {
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  
+      li {
+        float: left;
+      }
+    }
+  
+    .app-avatar {
+      font-style: italic;
+      margin-right: 4px;
+    }
+  
+    .note-last-updated {
+      color: rgba(0,0,0,.1);
+      font-style: italic;
+      position: absolute;
+      right: 0;
+      top: 42px;
+    }
+  
+    .mat-icon-button {
+      border: 1px solid #eee;
+      color: rgba(0, 0, 0, 0.4);
+      height: 35px;
+      line-height: 35px;
+      width: 35px;
+    }
+  }
+
+  app-notes-list,
+  app-note-collaborators {
     .app-empty-state {
       background-color: #6382ff;
 
@@ -321,6 +359,12 @@ body {
       }
     }
 
+    .btn-back {
+      position: absolute;
+      left: -34px;
+      top: 16px;
+    }
+
     .mat-card-header {
       background-color: rgba(0,0,0,.03);
       padding: 24px 8px;
@@ -330,12 +374,6 @@ body {
         font-size: 20px;
         font-weight: 400;
         margin: 0;
-
-        .btn-back {
-          position: absolute;
-          left: -34px;
-          top: 16px;
-        }
       }
     }
 
@@ -407,16 +445,16 @@ body {
       max-width: 100%;
       margin: 16px;
 
+      .btn-back {
+        left: -28px;
+        top: -1px;
+      }
+
       .mat-card-header {
         padding: 12px;
 
         .mat-card-title {
           font-size: 14px;
-
-          .btn-back {
-            left: -28px;
-            top: -1px;
-          }
         }
       }
 

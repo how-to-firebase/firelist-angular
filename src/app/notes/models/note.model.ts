@@ -1,3 +1,6 @@
+import { Collaborator } from './collaborator.model';
+import { Todo } from './todo.model';
+
 export class Note {
   id?: string;
   title: string;
@@ -9,4 +12,7 @@ export class Note {
   photoURL: string;
   owner: string;
   archived?: boolean;
+  todos?: Todo[];
+  collaborators?: Object;
+  sharedWith?: Collaborator[];
 }

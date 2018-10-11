@@ -5,6 +5,7 @@ import { AuthGuard } from '../core/auth.guard';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { NoteAddComponent } from './components/note-add/note-add.component';
 import { NoteComponent } from './components/note/note.component';
+import { NoteCollaboratorsComponent } from './components/note-collaborators/note-collaborators.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: 'note/:id',
     component: NoteComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'note/:id/collaborators',
+    component: NoteCollaboratorsComponent,
     canActivate: [AuthGuard]
   }
 ];

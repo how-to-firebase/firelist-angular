@@ -1,0 +1,14 @@
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate" color="accent" class="app-loading-state"></mat-progress-bar>
+</ng-template>
+
+<mat-card class="app-empty-state">
+  <mat-card-content>
+    <button mat-icon-button type="button" routerLink="/note/{{noteId}}" class="btn-back">
+      <mat-icon aria-label="An icon-button with a arrow icon">keyboard_arrow_left</mat-icon>
+    </button>
+    <img src="assets/empty-collaborators.png" width="125">
+    <blockquote><span class="quotes">“</span>A single rose can be my garden… a single friend, my world.<span class="quotes">”</span> – <cite>Leo Buscaglia</cite></blockquote>
+    <button mat-raised-button type="button" routerLink="/notes/add">Invite someone now</button>
+  </mat-card-content>
+</mat-card>

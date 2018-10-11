@@ -1,0 +1,14 @@
+<section class="note-shared-with">
+  <ul>
+    <li *ngFor="let collaborator of collaborators">
+      <a routerLink="/note/{{noteId}}/collaborators">
+        <img [src]="collaborator.photoURL" alt="" matTooltip="{{collaborator.email}}" class="app-avatar bordered" width="30" height="30">
+      </a>
+    </li>
+    <li>
+      <button mat-icon-button routerLink="/note/{{noteId}}/collaborators" class="action-add-collab" matTooltip="Share with friends">
+        <mat-icon>group_add</mat-icon>
+      </button>
+    </li>
+  </ul>
+</section>

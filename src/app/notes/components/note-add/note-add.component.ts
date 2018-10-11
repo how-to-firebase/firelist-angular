@@ -13,7 +13,6 @@ import { Note } from '../../models/note.model';
 })
 export class NoteAddComponent implements OnInit {
   private notesCollection: AngularFirestoreCollection<Note>;
-  currentUser: any;
   note: Note;
   noteForm: FormGroup;
   today: Date = new Date();
@@ -34,7 +33,7 @@ export class NoteAddComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.notesCollection = this.afs.collection<Note>(`notes`);
+    this.notesCollection = this.afs.collection<Note>('notes');
   }
 
   onSubmit() {
@@ -48,13 +47,23 @@ export class NoteAddComponent implements OnInit {
   }
 
   private prepareToSaveNote(): Note {
+    const { email, photoURL, uid } = this.auth.user;
     const formModel = this.noteForm.value;
 
     const newNote = {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       owner: {
         id: this.auth.user.uid,
-        photoURL: this.auth.user.photoURL
+        photoURL
+      },
+      sharedWith: [{
+        email,
+        photoURL,
+        uid,
+        owner: true
+      }],
+      collaborators: {
+        [this.auth.user.email.replace(/\W/g, '')]: true
       }
     };
 
