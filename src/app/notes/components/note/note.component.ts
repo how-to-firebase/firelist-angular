@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { MatDatepickerInputEvent } from '@angular/material';
+import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 
 import { Note } from '../../models/note.model';
 import * as firebase from 'firebase/app';
@@ -16,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
 export class NoteComponent implements OnInit {
   private noteDoc: AngularFirestoreDocument<Note>;
   noteId: string;
+  note: Note;
   note$: Observable<Note>;
   minNoteDueDate = new Date();
 
@@ -23,7 +23,7 @@ export class NoteComponent implements OnInit {
     private afs: AngularFirestore,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private snackBar: MatSnackBar
   ) {
     route.params.subscribe((params: Object) => this.noteId = params['id']);
   }
@@ -35,16 +35,19 @@ export class NoteComponent implements OnInit {
       const data = item.payload.data();
       return <Note>{ id, ...data };
     });
-  }
-
-  deleteNote() {
-    this.noteDoc.delete().then(_ => {
-      this.router.navigate(['/notes']);
+    this.note$.subscribe(noteItem => {
+      this.note = noteItem;
     });
   }
 
+  async deleteNote() {
+    const deletedNote = {...this.note};
+    await this.noteDoc.delete();
+    this.redirectToNotes(deletedNote);
+  }
+
   navigateToPreviousPage() {
-    this.location.back();
+    this.router.navigate(['notes']);
   }
 
   removeDueDate() {
@@ -80,5 +83,10 @@ export class NoteComponent implements OnInit {
         title: e.target.value
       });
     }
+  }
+
+  private async redirectToNotes(note: Note) {
+    await this.router.navigate(['notes']);
+    this.snackBar.open(`"${note.title}" deleted successfully 👋`, null, { duration: 2000 });
   }
 }
