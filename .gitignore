@@ -43,3 +43,4 @@ Thumbs.db
 # firebase
 firebase-adminsdk-credentials.json
 functions/lib
+.firebase

@@ -6,6 +6,7 @@ import { Note } from '../../models/note.model';
 import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../../core/auth.service';
 
 @Component({
   selector: 'app-note',
@@ -14,12 +15,14 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NoteComponent implements OnInit {
   private noteDoc: AngularFirestoreDocument<Note>;
+  currentUser: any;
   noteId: string;
   note: Note;
   note$: Observable<Note>;
   minNoteDueDate = new Date();
 
   constructor(
+    private auth: AuthService,
     private afs: AngularFirestore,
     private route: ActivatedRoute,
     private router: Router,
@@ -37,6 +40,10 @@ export class NoteComponent implements OnInit {
     });
     this.note$.subscribe(noteItem => {
       this.note = noteItem;
+    });
+
+    this.auth.authState$.subscribe(user => {
+      this.currentUser = user;
     });
   }
 

@@ -15,4 +15,5 @@ export class Note {
   todos?: Todo[];
   collaborators?: Object;
   sharedWith?: Collaborator[];
+  isInvitaionFormEnabled?: boolean;
 }

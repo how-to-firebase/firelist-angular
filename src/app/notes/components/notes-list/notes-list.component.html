@@ -4,10 +4,10 @@
 
 <ng-container *ngIf="notes$ | async; let notes; else loading">
 
-  <div *ngIf="notes.length > 0">
+  <ng-container *ngIf="notes.length > 0; else noResults">
     <mat-card *ngFor="let note of notes" class="note-item" routerLink="/note/{{note.id}}">
       <mat-card-header>
-        <img mat-card-avatar [src]="note.owner.photoURL">
+        <img mat-card-avatar [src]="note.photoURL">
         <mat-card-title>{{note.title}}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
@@ -27,14 +27,16 @@
     <button mat-fab class="fab-bottom-right" type="button" routerLink="/notes/add">
       <mat-icon aria-label="icon-button with a plus icon">library_add</mat-icon>
     </button>
-  </div>
+  </ng-container>
 
-  <mat-card class="app-empty-state" *ngIf="notes.length === 0">
-    <mat-card-content>
-      <img src="assets/notes.png" width="125">
-      <blockquote><span class="quotes">“</span>If you spend too much time thinking about a thing, you’ll never get it done.<span class="quotes">”</span> – <cite>Bruce Lee</cite></blockquote>
-      <p>You haven't created any note yet</p>
-      <button mat-raised-button type="button" routerLink="/notes/add">Start Now</button>
-    </mat-card-content>
-  </mat-card>
+  <ng-template #noResults>
+    <mat-card class="app-empty-state">
+      <mat-card-content>
+        <img src="assets/notes.png" width="125">
+        <blockquote><span class="quotes">“</span>If you spend too much time thinking about a thing, you’ll never get it done.<span class="quotes">”</span> – <cite>Bruce Lee</cite></blockquote>
+        <p>You haven't created any note yet</p>
+        <button mat-raised-button type="button" routerLink="/notes/add">Start Now</button>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
 </ng-container>
