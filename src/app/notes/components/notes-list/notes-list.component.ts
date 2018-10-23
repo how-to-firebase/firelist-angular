@@ -19,10 +19,13 @@ export class NotesListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.authState$.subscribe(authUser => {
-      this.notesCollection = this.afs.collection<Note>('notes', ref => ref.where('owner.id', '==', authUser.uid));
+    this.authService.authState$.subscribe(user => {
+      const collabEmailEscaped = user.email.replace(/\W/g, '');
+      this.notesCollection = this.afs.collection<Note>('notes', ref => ref.where(`collaborators.${collabEmailEscaped}`, '==', true));
+
       this.notes$ = this.notesCollection.snapshotChanges().map(actions => {
-        return actions.map(a => {
+        return actions.filter(item => !item.payload.doc.data().archived)
+                      .map(a => {
                         const data = a.payload.doc.data() as Note;
                         const id = a.payload.doc.id;
                         return { id, ...data };

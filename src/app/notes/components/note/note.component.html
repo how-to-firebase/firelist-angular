@@ -69,7 +69,7 @@
         <mat-icon aria-label="An icon-button with a archive/unarchive icon">{{note?.archived ? 'una' : 'a'}}rchive</mat-icon>
       </button>
 
-      <button mat-icon-button color="warn" type="button" (click)="deleteNote()">
+      <button [disabled]="note.owner !== currentUser?.uid" mat-icon-button color="warn" type="button" (click)="deleteNote()">
         <mat-icon aria-label="An icon-button with a trash icon">delete_forever</mat-icon>
       </button>
 

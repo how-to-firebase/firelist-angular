@@ -2,13 +2,49 @@
   <mat-progress-bar mode="indeterminate" color="accent" class="app-loading-state"></mat-progress-bar>
 </ng-template>
 
-<mat-card class="app-empty-state">
+<ng-template #collaboratorsBlankSlate>
+  <mat-card class="app-empty-state">
+    <mat-card-content>
+      <button mat-icon-button type="button" (click)="navigateBack()" class="btn-back">
+        <mat-icon aria-label="An icon-button with a arrow icon">keyboard_arrow_left</mat-icon>
+      </button>
+      <img src="assets/empty-collaborators.png" width="125">
+      <blockquote><span class="quotes">“</span>A single rose can be my garden… a single friend, my world.<span class="quotes">”</span> – <cite>Leo Buscaglia</cite></blockquote>
+      <button mat-raised-button type="button" (click)="enableInvitationForm()">Invite someone now</button>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<mat-card *ngIf="note?.isInvitaionFormEnabled; else collaboratorsBlankSlate">
+  <mat-card-header>
+    <mat-card-title>
+      <button mat-icon-button (click)="navigateBack()" class="btn-back">
+        <mat-icon aria-label="An icon-button with a arrow icon">keyboard_arrow_left</mat-icon>
+      </button>
+      Collaborators
+    </mat-card-title>
+  </mat-card-header>
+
   <mat-card-content>
-    <button mat-icon-button type="button" routerLink="/note/{{noteId}}" class="btn-back">
-      <mat-icon aria-label="An icon-button with a arrow icon">keyboard_arrow_left</mat-icon>
-    </button>
-    <img src="assets/empty-collaborators.png" width="125">
-    <blockquote><span class="quotes">“</span>A single rose can be my garden… a single friend, my world.<span class="quotes">”</span> – <cite>Leo Buscaglia</cite></blockquote>
-    <button mat-raised-button type="button" routerLink="/notes/add">Invite someone now</button>
+    <mat-list *ngIf="note?.sharedWith" class="collaborators-list">
+      <mat-list-item *ngFor="let collaborator of note.sharedWith">
+        <img matListAvatar [src]="collaborator.photoURL" alt="...">
+        <h3 matLine>{{collaborator.email}} <small *ngIf="collaborator.owner" class="collaborator-onwer">(Owner)</small></h3>
+        <button mat-icon-button (click)="deleteCollaborator($event, collaborator)" class="action-collaborator-delete"
+          color="warn" *ngIf="!collaborator.owner">
+          <mat-icon aria-label="An icon-button with a delete icon">cancel</mat-icon>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item class="action-collaborator-addition">
+        <mat-icon mat-list-icon>group_add</mat-icon>
+        <div mat-line>
+          <mat-form-field floatLabel="never" color="accent">
+            <input matInput autocomplete="off" type="email" placeholder="Email to share with..." (keyup.enter)="addCollaborator($event)"
+              name="newCollaborator" [formControl]="emailFormControl">
+          </mat-form-field>
+        </div>
+      </mat-list-item>
+    </mat-list>
   </mat-card-content>
 </mat-card>
