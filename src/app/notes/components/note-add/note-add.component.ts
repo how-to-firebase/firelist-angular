@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 import * as firebase from 'firebase/app';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { Note } from '../../models/note.model';
 import { AuthService } from '../../../core/auth.service';

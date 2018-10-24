@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 
 import { Note } from '../../models/note.model';
 import * as firebase from 'firebase/app';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../../core/auth.service';
 

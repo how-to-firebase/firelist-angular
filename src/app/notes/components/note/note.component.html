@@ -37,7 +37,7 @@
       </div>
 
       <span *ngIf="note.dueDate" class="note-metadata note-duedate">
-        <mat-icon>flag</mat-icon> {{note.dueDate | date}}
+        <mat-icon>flag</mat-icon> {{note.dueDate.toDate() | date}}
 
         <button mat-icon-button color="warn" type="button" (click)="removeDueDate()">
           <mat-icon aria-label="An icon-button with a cancel icon">cancel</mat-icon>
@@ -62,7 +62,7 @@
       <button mat-icon-button type="button" (click)="dueDatePicker.open()">
         <mat-icon aria-label="An icon-button with a clock icon">today</mat-icon>
       </button>
-      <input matInput [min]="minNoteDueDate" [matDatepicker]="dueDatePicker" class="date-picker-calendar-only" (dateChange)="updateNoteDueDate($event)" [value]="note.dueDate">
+      <input matInput [min]="minNoteDueDate" [matDatepicker]="dueDatePicker" class="date-picker-calendar-only" (dateChange)="updateNoteDueDate($event)" [value]="note.dueDate.toDate()">
       <mat-datepicker #dueDatePicker></mat-datepicker>
 
       <button mat-icon-button type="button" (click)="toggleNoteArchive(note)">

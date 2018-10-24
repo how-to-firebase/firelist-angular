@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import * as firebase from 'firebase/app';
 import { FirebaseError } from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 export enum AuthProviders {
   Github = 0,
