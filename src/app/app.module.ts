@@ -20,7 +20,7 @@ import { NotesModule } from './notes/notes.module';
     BrowserModule,
     CoreModule,
     NotesModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,7 +15,7 @@
           <span>{{note.description}}</span>
         </p>
         <span *ngIf="note.dueDate" class="note-metadata">
-          <mat-icon>flag</mat-icon> {{note.dueDate | date}}
+          <mat-icon>flag</mat-icon> {{note.dueDate.toDate() | date}}
         </span>
 
         <span *ngIf="note.location" class="note-metadata clean">
