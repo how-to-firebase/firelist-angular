@@ -8,5 +8,5 @@ export const environment = {
     storageBucket: 'firelist-angular-dev.appspot.com',
     messagingSenderId: '131167589613'
   },
-  googleMapsKey: 'AIzaSyByWx56dEGT-Dbkr4eNCJ_aeGcR1kz0mm8'
+  googleMapsKey: 'AIzaSyCTDRoGnPwEHP_Iw1Vc68GLrmNQ7iwBkhA'
 };
