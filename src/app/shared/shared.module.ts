@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { LocationService } from './services/location.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,9 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule
+  ],
+  providers: [
+    LocationService
   ]
 })
 export class SharedModule { }

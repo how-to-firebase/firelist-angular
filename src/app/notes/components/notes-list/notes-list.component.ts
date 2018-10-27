@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
 import { Note } from '../../models/note.model';
 import { AuthService } from '../../../core/auth.service';
+import { LocationService } from '../../../shared/services/location.service';
 
 @Component({
   selector: 'app-notes-list',
@@ -15,10 +16,12 @@ export class NotesListComponent implements OnInit {
 
   constructor(
     private afs: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private locationService: LocationService
   ) {}
 
   ngOnInit() {
+    this.locationService.getUserLocation();
     this.authService.authState$.subscribe(user => {
       const collabEmailEscaped = user.email.replace(/\W/g, '');
       this.notesCollection = this.afs.collection<Note>('notes', ref => ref.where(`collaborators.${collabEmailEscaped}`, '==', true));
