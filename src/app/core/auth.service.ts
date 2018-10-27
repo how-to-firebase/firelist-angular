@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { FirebaseError } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 
 export enum AuthProviders {
   Github = 0,
@@ -15,12 +16,22 @@ export enum AuthProviders {
   Custom = 6
 }
 
+interface User {
+  uid: string;
+  email: string;
+  photoURL?: string;
+  displayName: string;
+}
+
 @Injectable()
 export class AuthService {
   public user: firebase.User;
   public authState$: Observable<firebase.User>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore
+  ) {
     this.user = null;
     this.authState$ = afAuth.authState;
 
@@ -60,6 +71,7 @@ export class AuthService {
       .then((result: firebase.auth.UserCredential) => {
         // The signed-in user info.
         this.user = result.user;
+        this.updateUserData(result.user);
       }).catch((error: FirebaseError) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -91,5 +103,18 @@ export class AuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut();
+  }
+
+  private updateUserData(userData) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${userData.uid}`);
+
+    const data: User = {
+      uid: userData.uid,
+      email: userData.email,
+      displayName: userData.displayName,
+      photoURL: userData.photoURL
+    };
+
+    return userRef.set(data, { merge: true });
   }
 }
