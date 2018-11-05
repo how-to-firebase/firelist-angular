@@ -76,9 +76,7 @@ export class NoteAddComponent implements OnInit {
         uid: this.currentUser.uid,
         owner: true
       }],
-      collaborators: {
-        [this.currentUser.email.replace(/\W/g, '')]: true
-      }
+      collaborators: [this.currentUser.email]
     };
 
     if (this.noteLocation) {
