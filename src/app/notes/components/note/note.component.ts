@@ -38,6 +38,7 @@ export class NoteComponent implements OnInit {
       const data = item.payload.data();
       return <Note>{ id, ...data };
     });
+    // @Todo: ngOnDestroy to remove the subscribe
     this.note$.subscribe(noteItem => {
       this.note = noteItem;
     });

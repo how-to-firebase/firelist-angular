@@ -7,5 +7,6 @@ export const environment = {
     projectId: 'firelist-angular-dev',
     storageBucket: 'firelist-angular-dev.appspot.com',
     messagingSenderId: '131167589613'
-  }
+  },
+  googleMapsKey: 'AIzaSyCTDRoGnPwEHP_Iw1Vc68GLrmNQ7iwBkhA'
 };

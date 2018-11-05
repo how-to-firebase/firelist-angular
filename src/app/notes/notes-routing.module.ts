@@ -6,12 +6,18 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
 import { NoteAddComponent } from './components/note-add/note-add.component';
 import { NoteComponent } from './components/note/note.component';
 import { NoteCollaboratorsComponent } from './components/note-collaborators/note-collaborators.component';
+import { NotesGeolocationComponent } from './components/notes-geolocation/notes-geolocation.component';
 
 const routes: Routes = [
   {
     path: 'notes',
     component: NotesListComponent,
     canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'notes/geolocation',
+    component: NotesGeolocationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'notes/add',

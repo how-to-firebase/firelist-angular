@@ -14,6 +14,14 @@ export class NavBarComponent {
     private router: Router
   ) {}
 
+  goToNotesList() {
+    this.router.navigate(['/notes']);
+  }
+
+  goToNotesGeolocation() {
+    this.router.navigate(['/notes/geolocation']);
+  }
+
   logout(evt: Event) {
     const message = 'You have been signed out';
     this.auth.signOut();

@@ -4,11 +4,14 @@
   <div *ngIf="auth.user as user">
     <mat-toolbar>
       <mat-toolbar-row>
-        <button class="app-avatar-button" mat-icon-button>
+        <button class="app-avatar-button" mat-icon-button (click)="goToNotesList()">
           <img [src]="user.photoURL" [alt]="user.displayName" width="32" class="app-avatar">
         </button>
         <span>Firelist <img src="assets/icons/emojione_fire.png" class="emoji"></span>
         <span class="toolbar-spacer"></span>
+        <button mat-icon-button (click)="goToNotesGeolocation()">
+          <mat-icon>my_location</mat-icon>
+        </button>
         <button mat-icon-button [mat-menu-trigger-for]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
