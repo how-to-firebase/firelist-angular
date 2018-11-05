@@ -21,6 +21,7 @@ export class NotesListComponent implements OnInit {
   ngOnInit() {
     this.authService.authState$.subscribe(user => {
       const collabEmailEscaped = user.email.replace(/\W/g, '');
+      // @Todo: Change to array query https://firebase.google.com/docs/firestore/query-data/queries#simple_queries
       this.notesCollection = this.afs.collection<Note>('notes', ref => ref.where(`collaborators.${collabEmailEscaped}`, '==', true));
 
       this.notes$ = this.notesCollection.snapshotChanges().map(actions => {

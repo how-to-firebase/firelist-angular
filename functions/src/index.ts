@@ -56,6 +56,7 @@ const deleteCollection = (db, collectionPath, batchSize) => {
 
 // https://firebase.google.com/docs/functions/manage-functions#modify-region
 // https://firebase.google.com/docs/functions/locations
+// @Todo: Turn on retry() and set the timeout to be very long
 export const deleteNoteAndTodos = functions.region('europe-west1').firestore
   .document('notes/{noteId}')
   .onDelete((snap, context) => {

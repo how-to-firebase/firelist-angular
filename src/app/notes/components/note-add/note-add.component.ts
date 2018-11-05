@@ -6,8 +6,9 @@ import { MatSnackBar } from '@angular/material';
 import * as firebase from 'firebase/app';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { Note } from '../../models/note.model';
 import { AuthService } from '../../../core/auth.service';
+import { Note } from '../../models/note.model';
+import { NoteLocation } from '../../models/location.model';
 
 @Component({
   selector: 'app-note-add',
@@ -18,6 +19,7 @@ export class NoteAddComponent implements OnInit {
   isLoading: boolean;
   note: Note;
   noteForm: FormGroup;
+  noteLocation: NoteLocation;
   today: Date = new Date();
   private notesCollection: AngularFirestoreCollection<Note>;
 
@@ -28,8 +30,8 @@ export class NoteAddComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.noteForm = fb.group({
-      title: ['', Validators.required ],
+    this.noteForm = this.fb.group({
+      title: ['', Validators.required],
       description: '',
       dueDate: ['', { disabled: true }],
       location: ''
@@ -53,17 +55,21 @@ export class NoteAddComponent implements OnInit {
     }
   }
 
+  placeSelectedHandler(location) {
+    this.noteLocation = location;
+  }
+
   prepareSaveNote(): Note {
     const userDoc = this.afs.doc(`users/${this.currentUser.uid}`);
-    const formModel = this.noteForm.value;
+    const noteModel = this.noteForm.value;
 
     const newNote = {
       completed: false,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       createdBy: userDoc.ref,
+      isInvitaionFormEnabled: false,
       owner: this.currentUser.uid,
       photoURL: this.currentUser.photoURL,
-      isInvitaionFormEnabled: false,
       sharedWith: [{
         email: this.currentUser.email,
         photoURL: this.currentUser.photoURL,
@@ -75,11 +81,16 @@ export class NoteAddComponent implements OnInit {
       }
     };
 
-    return {...formModel, ...newNote};
+    if (this.noteLocation) {
+      noteModel.geolocation = this.noteLocation;
+      noteModel.geopoint = new firebase.firestore.GeoPoint(this.noteLocation.lat, this.noteLocation.lng);
+    }
+
+    return {...noteModel, ...newNote};
   }
 
   private redirectToNote(doc: any): any {
-    const snackBarRef = this.snackBar.open(`${doc.title} created successfully`, null, {
+    const snackBarRef = this.snackBar.open(`${doc.title} created successfully 🙌`, null, {
       duration: 2000,
     });
 

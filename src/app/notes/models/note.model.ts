@@ -1,4 +1,5 @@
 import { Collaborator } from './collaborator.model';
+import { NoteLocation } from './location.model';
 import { Todo } from './todo.model';
 
 export class Note {
@@ -7,6 +8,8 @@ export class Note {
   description?: string;
   dueDate?: any;
   location?: string;
+  geolocation?: NoteLocation;
+  geopoint?: any;
   createdAt: any;
   createdBy?: any;
   photoURL: string;

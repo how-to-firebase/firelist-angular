@@ -46,6 +46,8 @@
           <div mat-line>
             <mat-form-field floatLabel="never" color="accent">
               <input 
+                appGooglePlacesAutocomplete
+                (placeSelected)="placeSelectedHandler($event)"
                 autocomplete="off"
                 matInput 
                 placeholder="Add Location" 

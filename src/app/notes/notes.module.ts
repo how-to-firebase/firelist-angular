@@ -12,7 +12,7 @@ import { TodosComponent } from './components/todos/todos.component';
 import { NoteCollaboratorsComponent } from './components/note-collaborators/note-collaborators.component';
 import { SharedWithComponent } from './components/shared-with/shared-with.component';
 import { NotesGeolocationComponent } from './components/notes-geolocation/notes-geolocation.component';
-
+import { GooglePlacesAutocompleteDirective } from './directives/google-places-autocomplete.directive';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -31,7 +31,8 @@ import { AgmCoreModule } from '@agm/core';
     TodosComponent,
     NoteCollaboratorsComponent,
     SharedWithComponent,
-    NotesGeolocationComponent
+    NotesGeolocationComponent,
+    GooglePlacesAutocompleteDirective
   ]
 })
 export class NotesModule { }

@@ -15,11 +15,15 @@
           <span>{{note.description}}</span>
         </p>
         <span *ngIf="note.dueDate" class="note-metadata">
-          <mat-icon>flag</mat-icon> {{note.dueDate.toDate() | date}}
+          <mat-icon>flag</mat-icon>{{note.dueDate.toDate() | date}}
         </span>
 
-        <span *ngIf="note.location" class="note-metadata clean">
-          <mat-icon>place</mat-icon> {{note.location}}
+        <span *ngIf="note.geolocation" class="note-metadata note-location-url clean">
+          <mat-icon>place</mat-icon>
+          <a [href]="note.geolocation.url" target="_blank">
+            <ng-container *ngIf="note.geolocation.place.name; else formattedAddress">{{ note.geolocation.place.name }}</ng-container>
+            <ng-template #formattedAddress>{{ note.geolocation.formatted_address }}</ng-template>
+          </a>
         </span>
       </mat-card-content>
     </mat-card>

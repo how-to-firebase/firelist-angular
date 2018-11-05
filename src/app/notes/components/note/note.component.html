@@ -37,15 +37,19 @@
       </div>
 
       <span *ngIf="note.dueDate" class="note-metadata note-duedate">
-        <mat-icon>flag</mat-icon> {{note.dueDate.toDate() | date}}
+        <mat-icon>flag</mat-icon> {{note.dueDate && note.dueDate.toDate() | date}}
 
         <button mat-icon-button color="warn" type="button" (click)="removeDueDate()">
           <mat-icon aria-label="An icon-button with a cancel icon">cancel</mat-icon>
           </button>
       </span>
 
-      <span *ngIf="note.location" class="note-metadata clean">
-        <mat-icon>place</mat-icon> {{note.location}}
+      <span *ngIf="note.geolocation" class="note-metadata note-location-url clean">
+        <mat-icon>place</mat-icon>
+        <a [href]="note.geolocation.url" target="_blank">
+          <ng-container *ngIf="note.geolocation.place.name; else formattedAddress"><strong>{{ note.geolocation.place.name }}</strong> {{ note.geolocation.place.vicinity }}</ng-container>
+          <ng-template #formattedAddress>{{ note.geolocation.formatted_address }}</ng-template>
+        </a>
       </span>
 
       <app-todos [noteId]="noteId"></app-todos>
@@ -62,7 +66,7 @@
       <button mat-icon-button type="button" (click)="dueDatePicker.open()">
         <mat-icon aria-label="An icon-button with a clock icon">today</mat-icon>
       </button>
-      <input matInput [min]="minNoteDueDate" [matDatepicker]="dueDatePicker" class="date-picker-calendar-only" (dateChange)="updateNoteDueDate($event)" [value]="note.dueDate.toDate()">
+      <input matInput [min]="minNoteDueDate" [matDatepicker]="dueDatePicker" class="date-picker-calendar-only" (dateChange)="updateNoteDueDate($event)" [value]="note.dueDate && note.dueDate.toDate()">
       <mat-datepicker #dueDatePicker></mat-datepicker>
 
       <button mat-icon-button type="button" (click)="toggleNoteArchive(note)">
