@@ -30,7 +30,7 @@
       <mat-list-item *ngFor="let collaborator of note.sharedWith">
         <img matListAvatar [src]="collaborator.photoURL" alt="...">
         <h3 matLine>{{collaborator.email}} <small *ngIf="collaborator.owner" class="collaborator-onwer">(Owner)</small></h3>
-        <button mat-icon-button (click)="deleteCollaborator($event, collaborator)" class="action-collaborator-delete"
+        <button mat-icon-button (click)="deleteCollaborator(collaborator)" class="action-collaborator-delete"
           color="warn" *ngIf="!collaborator.owner">
           <mat-icon aria-label="An icon-button with a delete icon">cancel</mat-icon>
         </button>
