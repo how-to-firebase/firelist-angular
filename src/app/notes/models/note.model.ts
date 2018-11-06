@@ -16,7 +16,7 @@ export class Note {
   owner: string;
   archived?: boolean;
   todos?: Todo[];
-  collaborators?: Object;
+  collaborators?: any[];
   sharedWith?: Collaborator[];
   isInvitaionFormEnabled?: boolean;
 }

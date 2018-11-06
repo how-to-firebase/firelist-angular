@@ -46,19 +46,12 @@ export class NoteCollaboratorsComponent implements OnInit {
   }
 
   async addCollaborator(e) {
-    const email = e.target.value;
-    if (email.trim().length) {
+    const email = e.target.value.trim();
+    if (email.length) {
       const photoURL = `https://avatars.io/gravatar/${email}`;
-      const collaborator: Collaborator = { email, photoURL};
-      const collabEmailEscaped = email.replace(/\W/g, '');
-      const collaborators  = {...this.note.collaborators, ...{[collabEmailEscaped]: true}};
-      const sharedWith = this.note.sharedWith.concat(collaborator);
-
-      await this.noteDoc.collection('collaborators').doc(`${collabEmailEscaped}`).set({
-        email,
-        photoURL,
-        invitedBy: this.currentUser.uid
-      });
+      const collaborator: Collaborator = { email, photoURL, invitedBy: this.currentUser.uid };
+      const collaborators = [...this.note.collaborators, ...[email]];
+      const sharedWith = [...this.note.sharedWith, ...[collaborator]];
 
       await this.noteDoc.update({
         collaborators,
@@ -69,15 +62,10 @@ export class NoteCollaboratorsComponent implements OnInit {
     }
   }
 
-  async deleteCollaborator(e, collab) {
+  async deleteCollaborator(collab) {
     const sharedWith = [...this.note.sharedWith.filter(item => item.email !== collab.email)];
+    const collaborators = [...this.note.collaborators.filter(email => email !== collab.email)];
 
-    // https://codeburst.io/use-es2015-object-rest-operator-to-omit-properties-38a3ecffe90
-    const collabEmailEscaped = collab.email.replace(/\W/g, '');
-    delete this.note.collaborators[collabEmailEscaped];
-    const collaborators = {...this.note.collaborators};
-
-    await this.noteDoc.collection('collaborators').doc(`${collabEmailEscaped}`).delete();
     await this.noteDoc.update({
       collaborators,
       sharedWith

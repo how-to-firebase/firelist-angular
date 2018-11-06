@@ -515,13 +515,18 @@ body {
     }
 
     &.collaborators-list {
+      .mat-list-item-avatar {
+        .mat-list-icon {
+          text-align: center;
+          width: 32px;
+        }
+      }
       @media screen and (max-width: $break-small) {
         .mat-list-item-avatar {
           .mat-list-icon {
             font-size: 20px;
             height: 20px;
             padding: 0;
-            text-align: center;
             width: 40px;
           }
         }
